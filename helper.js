@@ -10,12 +10,30 @@ function doPeriodsOverlap(periodA, periodB) {
 }
 
 function doSectionsOverlap(sectionA, sectionB) {
+    // return True if the sections have overlapping schedules
     for (let i = 0; i < sectionA.schedule.length; i++) {
         for (let j = 0; j < sectionB.schedule.length; j++) {
-            if (doPeriodsOverlap(sectionA[i], sectionB[j])) {
-                return True
+            if (doPeriodsOverlap(sectionA.schedule[i], sectionB.schedule[j])) {
+                return true;
             }
-
         }
     }
-    return False
+    return false;
+}
+
+/**
+ * Checks if a candidate section can fit into an existing schedule without conflicts.
+ * @param {Object} candidateSection - The section object we want to test
+ * @param {Array<Object>} currentCombination - Array of section objects already picked
+ * @returns {boolean} True if candidateSection does NOT conflict with ANY section in currentCombination
+ */
+function isSectionValidForSchedule(candidateSection, currentCombination) {
+    // return True if candidateSection does not have conflict with currentCombination
+    for (let i = 0; i < currentCombination.length; i++) {
+        if (doSectionsOverlap(currentCombination[i], candidateSection)) {
+            return false;
+        }
+    }
+    return true;
+}
+
