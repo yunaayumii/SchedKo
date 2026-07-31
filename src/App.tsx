@@ -18,8 +18,10 @@ function App() {
       <p>{generatedSchedules.length}</p>
       <p>{activeScheduleIndex + 1}</p>
 
-      <button onClick={() => setGeneratedSchedules(generateSchedules(MOCK_COURSES))}>Handle Generate</button>
-
+      <button onClick={() => {
+        setGeneratedSchedules(generateSchedules(MOCK_COURSES));
+        setActiveScheduleIndex(0);
+      }}>Handle Generate</button>
       <div>
         {/* previous button */}
         <button
@@ -51,7 +53,7 @@ function App() {
               <ul>
                 {section.schedule.map((sched, index) => (
                   <li key={index}>
-                    {sched.day}
+                    Day: {sched.day} | Time: {sched.startTime} - {sched.endTime}
                   </li>
                 ))}
               </ul>
