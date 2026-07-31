@@ -7,6 +7,9 @@ function App() {
   const [selectedCourseIds, setSelectedCourseIds] = useState<string[]>([]);
   const [generatedSchedules, setGeneratedSchedules] = useState<CourseSection[][]>([]);
   const [activeScheduleIndex, setActiveScheduleIndex] = useState<number>(0);
+
+  const currentSchedule = generatedSchedules[activeScheduleIndex];
+
   return (
     <div>
       <h1>🗓️ SchedKo Pathfinder</h1>
@@ -36,6 +39,12 @@ function App() {
           }
         }}>Next</button>
       </div>
+      {/* rendering */}
+      {generatedSchedules.length > 0 && (
+        <div>
+          <h2> Schedule {activeScheduleIndex + 1} Details</h2>
+        </div>
+      )}
     </div>
   )
 }
